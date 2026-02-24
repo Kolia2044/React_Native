@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, TextInput, Button, StyleSheet, Text, Image } from "react-native";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { WeatherData } from "../types/weather";
 
 type WeatherCardProps = {
@@ -9,25 +9,30 @@ type WeatherCardProps = {
 export function WeatherCard({ data }: WeatherCardProps) {
   console.log("weather icon:", data.icon);
   return (
-    <View>
-      <Text style={styles.cityName}>Назва міста: {data.city}</Text>
+    <View style={styles.container}>
+      <Text style={styles.cityName}>{data.city}</Text>
       <Image source={{ uri: data.icon }} style={styles.image} />
-      <Text style={styles.temperature}>Температура: {data.temperature}°C</Text>
-      <Text style={styles.description}>Опис: {data.description}</Text>
-      <Text style={styles.humidity}>Вологість: {data.humidity}%</Text>
-      <Text style={styles.windSpeed}>
-        Швидкість вітру: {data.wind_speed} м/с
-      </Text>
-      <Text style={styles.sunrise}>Схід сонця: {data.sunrise_time}</Text>
-      <Text style={styles.sunset}>Захід сонця: {data.sunset_time}</Text>
+      <Text style={styles.temperature}>{data.temperature}°C</Text>
+      <Text style={styles.description}>{data.description}</Text>
+      <Text style={styles.details}>Відчувається як: {data.feels_like}°C</Text>
+      <Text style={styles.details}>Мін: {data.temp_min}°C | Макс: {data.temp_max}°C</Text>
+      <Text style={styles.details}>Вологість: {data.humidity}%</Text>
+      <Text style={styles.details}>Вітер: {data.wind_speed} м/с</Text>
+      <Text style={styles.details}>Схід сонця: {data.sunrise_time}</Text>
+      <Text style={styles.details}>Захід сонця: {data.sunset_time}</Text>
     </View>
   );
 }
 const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    padding: 20,
+  },
   cityName: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 5,
+    textAlign: "center",
   },
   image: {
     width: 100,
@@ -35,27 +40,21 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   temperature: {
-    fontSize: 18,
+    fontSize: 32,
+    fontWeight: "bold",
     marginBottom: 5,
+    textAlign: "center",
   },
   description: {
     fontSize: 16,
-    marginBottom: 5,
+    marginBottom: 15,
+    textAlign: "center",
+    textTransform: "capitalize",
   },
-  humidity: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  windSpeed: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  sunrise: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  sunset: {
-    fontSize: 16,
-    marginBottom: 5,
+  details: {
+    fontSize: 14,
+    marginBottom: 4,
+    textAlign: "center",
+    color: "#555",
   },
 });

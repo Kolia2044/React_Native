@@ -1,6 +1,9 @@
 export type WeatherData = {
   city: string;
   temperature: number;
+  feels_like: number;
+  temp_min: number;
+  temp_max: number;
   description: string;
   humidity: number;
   wind_speed: number;
@@ -9,9 +12,9 @@ export type WeatherData = {
   sunset_time: string;
 };
 
-type LoadingState = "idle" | "loading" | "success" | "error";
+export type LoadingState = "idle" | "loading" | "success" | "error";
 
-type WeatherError = {
+export type WeatherError = {
   message: string;
   code?: number;
 };
